@@ -43,8 +43,8 @@ export default function Header() {
             <Link href={user ? "/profile" : "/auth"} className={`text-gray-700 hover:text-primary font-medium ${location === '/profile' ? 'text-primary' : ''}`}>
               Sell
             </Link>
-            <Link href="/cars?filter=finance" className="text-gray-700 hover:text-primary font-medium">
-              Finance
+            <Link href="/finance-guide" className="text-gray-700 hover:text-primary font-medium">
+              Financing & Buying Guide
             </Link>
             <Link href="/#how-it-works" className="text-gray-700 hover:text-primary font-medium">
               About
@@ -116,8 +116,8 @@ export default function Header() {
             <Link href={user ? "/profile" : "/auth"} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
               Sell
             </Link>
-            <Link href="/cars?filter=finance" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
-              Finance
+            <Link href="/finance-guide" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
+              Financing & Buying Guide
             </Link>
             <Link href="/#how-it-works" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50">
               About

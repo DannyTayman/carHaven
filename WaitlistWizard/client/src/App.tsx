@@ -10,6 +10,7 @@ import HomePage from "@/pages/home-page";
 import AuthPage from "@/pages/auth-page";
 import CarListingPage from "@/pages/car-listing-page";
 import CarDetailPage from "@/pages/car-detail-page";
+import FinanceGuide from "@/pages/finance-guide";  // <-- New import
 import ProfilePage from "@/pages/profile-page";
 import MessagesPage from "@/pages/messages-page";
 import NotFound from "@/pages/not-found";
@@ -28,6 +29,7 @@ function Router() {
           <Route path="/auth" component={AuthPage} />
           <Route path="/cars" component={CarListingPage} />
           <Route path="/cars/:id" component={CarDetailPage} />
+          <Route path="/finance-guide" component={FinanceGuide} /> {/* New Route */}
           <ProtectedRoute path="/profile" component={ProfilePage} />
           <ProtectedRoute path="/messages" component={MessagesPage} />
           <Route component={NotFound} />
