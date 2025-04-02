@@ -14,7 +14,11 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
+args = "cd WaitlistWizard && npm run dev"
 
 [deployment]
 run = ["sh", "-c", "cd WaitlistWizard && npm run dev"]
+
+[[ports]]
+localPort = 5006
+externalPort = 80
