@@ -1,4 +1,5 @@
 modules = ["nodejs-20", "web"]
+run = "cd WaitlistWizard && npm run dev"
 
 [nix]
 channel = "stable-24_05"
@@ -14,3 +15,6 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
+
+[deployment]
+run = ["sh", "-c", "cd WaitlistWizard && npm run dev"]
