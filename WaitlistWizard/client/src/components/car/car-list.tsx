@@ -157,8 +157,33 @@ export function CarList({
     );
   }
   
+  // Sort cars based on sort option
+  let sortedCars = [...(cars || [])];
+  const sortOption = searchParams.sort;
+
+  if (sortOption) {
+    sortedCars.sort((a, b) => {
+      switch (sortOption) {
+        case 'newest':
+          return b.id - a.id;
+        case 'oldest':
+          return a.id - b.id;
+        case 'price_low':
+          return a.price - b.price;
+        case 'price_high':
+          return b.price - a.price;
+        case 'mileage_low':
+          return a.mileage - b.mileage;
+        case 'mileage_high':
+          return b.mileage - a.mileage;
+        default:
+          return 0;
+      }
+    });
+  }
+
   // Limit the number of cars if specified
-  const displayedCars = limit && cars ? cars.slice(0, limit) : cars || [];
+  const displayedCars = limit && sortedCars ? sortedCars.slice(0, limit) : sortedCars;
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

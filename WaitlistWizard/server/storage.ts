@@ -110,7 +110,7 @@ export class MemStorage implements IStorage {
         description: "Beautiful 2020 Toyota Camry XSE with low miles. This car is in excellent condition inside and out. Features include leather seats, sunroof, and Toyota Safety Sense package.",
         features: ["Leather Seats", "Navigation", "Bluetooth", "Backup Camera", "Sunroof", "Heated Seats"],
         location: "San Francisco, CA",
-        images: ["https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://dealerimages.dealereprocess.com/image/upload/1841003.jpg", "https://www.cnet.com/a/img/resize/2cf1820d218d69c71ad3000467b0080501a339c8/hub/2018/11/16/2eb60b0f-8d78-4f92-8ec9-2b4e3ac782c9/toyota-camry-trd-ogi.jpg?auto=webp&fit=crop&height=675&width=1200"],
         userId: seller.id
       },
       {
@@ -126,7 +126,7 @@ export class MemStorage implements IStorage {
         description: "Long Range Tesla Model 3 with Full Self Driving capability. Single owner, always garaged, and regularly maintained. White exterior with black interior.",
         features: ["Full Self Driving", "Premium Interior", "Heated Seats", "Premium Audio", "Glass Roof"],
         location: "Austin, TX",
-        images: ["https://images.unsplash.com/photo-1561580125-028ee3bd62eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-jQMqMxxF9RI0BbPNK8T64BQ1gWA_8GD3WQ&s"],
         userId: seller.id
       },
       {
@@ -142,7 +142,7 @@ export class MemStorage implements IStorage {
         description: "Sporty Honda Civic with manual transmission and turbocharged engine. Perfect for those who enjoy driving. Well maintained with service records available.",
         features: ["Sport Mode", "Apple CarPlay", "Android Auto", "Turbocharged Engine", "Sport Wheels"],
         location: "Chicago, IL",
-        images: ["https://images.unsplash.com/photo-1590362891991-f776e747a588?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://www.cnet.com/a/img/resize/5ad5ba0e3b30db7b737df5b99ef6096791fd133f/hub/2019/05/20/206ebe75-ceca-4a48-85f9-0ee77584d676/2019-honda-civic-touring-sedan-ogi-1.jpg?auto=webp&fit=crop&height=675&width=1200"],
         userId: seller.id
       },
       {
@@ -158,7 +158,7 @@ export class MemStorage implements IStorage {
         description: "Almost new Ford F-150 Lariat with all the bells and whistles. Features include 4x4, crew cab, leather interior, navigation, and Pro Trailer Backup Assist.",
         features: ["4x4", "Leather Interior", "Navigation", "Crew Cab", "Trailer Backup Assist", "Heated Seats"],
         location: "Dallas, TX",
-        images: ["https://images.unsplash.com/photo-1583267746897-2cf415887172?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Rku0jyxZMBxVvcog0N8YdVd_oRJ17pLdBA&s", "https://pictures.dealer.com/k/koonsannapolisfordfd/1489/a8148a6593adea6aec44d2f8a042aa7bx.jpg?impolicy=resize&w=568"],
         userId: seller.id
       },
       {
@@ -174,7 +174,7 @@ export class MemStorage implements IStorage {
         description: "Luxurious BMW X5 with xDrive all-wheel drive. Features include panoramic sunroof, heated leather seats, navigation, and premium sound system.",
         features: ["All-Wheel Drive", "Panoramic Sunroof", "Heated Seats", "Navigation", "Premium Sound"],
         location: "Miami, FL",
-        images: ["https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://pictures.dealer.com/b/bmwofsanantonio/1978/afcc0d86cfc58b0060cad81adec1cb5fx.jpg", "https://cdn.motor1.com/images/mgl/03EGz/s1/bmw-x5.webp", "https://www.taylorbmw.com/assets/shared/CustomHTMLFiles/Compliance/BMW/FMA/images/2017-X5-xDrive35i.png"],
         userId: seller.id
       },
       {
@@ -190,7 +190,7 @@ export class MemStorage implements IStorage {
         description: "Beautiful Mazda CX-5 in Soul Red Crystal Metallic. This Grand Touring model comes with all-wheel drive, leather seats, Bose sound system, and more.",
         features: ["All-Wheel Drive", "Leather Seats", "Bose Sound System", "Sunroof", "Heated Seats"],
         location: "Seattle, WA",
-        images: ["https://images.unsplash.com/photo-1625395005123-eaa8f7a832d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://cka-dash.s3.amazonaws.com/001-0120-WMA1202/model1.png"],
         userId: seller.id
       },
       {
@@ -206,7 +206,7 @@ export class MemStorage implements IStorage {
         description: "Reliable Chevrolet Silverado with 4x4 capability. This truck has been well maintained and is ready for work or play.",
         features: ["4x4", "Tow Package", "Crew Cab", "Backup Camera", "Bluetooth"],
         location: "Denver, CO",
-        images: ["https://images.unsplash.com/photo-1571861542548-3b19d18ff295?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://www.speednik.com/files/2016/02/2016-02-15_18-58-13.jpg"],
         userId: seller.id
       },
       {
@@ -222,7 +222,7 @@ export class MemStorage implements IStorage {
         description: "Nearly new Hyundai Tucson Hybrid Limited with all the latest features. This eco-friendly SUV delivers impressive fuel economy without sacrificing performance.",
         features: ["Hybrid Powertrain", "Panoramic Sunroof", "360-degree Camera", "Leather Seats", "10.25-inch Touchscreen"],
         location: "Portland, OR",
-        images: ["https://images.unsplash.com/photo-1617469165786-8907db0228b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://www.wallacehyundaiofstuart.com/blogs/3105/wp-content/uploads/2021/07/2022-hyundai-tucson-near-stuart-fl.jpg", "https://www.cnet.com/a/img/resize/fbb2c960e0cdee623135232f82d017e62639a0a3/hub/2021/04/19/31132fa6-2622-4ebe-995a-f52e20b7b218/2022-hyundai-tucson-limited-awd-ogi.jpg?auto=webp&fit=crop&height=900&width=1200"],
         userId: seller.id
       },
       {
@@ -238,7 +238,7 @@ export class MemStorage implements IStorage {
         description: "Well-maintained Audi A4 with Premium Plus package. This luxury sedan features Quattro all-wheel drive, leather interior, and premium sound system.",
         features: ["Quattro All-Wheel Drive", "Leather Interior", "Sunroof", "Heated Seats", "Premium Sound"],
         location: "Boston, MA",
-        images: ["https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://media.ed.edmunds-media.com/audi/a4/2013/oem/2013_audi_a4_sedan_20t-premium-quattro_fq_oem_2_1600.jpg"],
         userId: seller.id
       },
       {
@@ -254,7 +254,7 @@ export class MemStorage implements IStorage {
         description: "Versatile Subaru Outback ready for your next adventure. Features include all-wheel drive, roof rails, and Subaru's EyeSight safety system.",
         features: ["All-Wheel Drive", "Roof Rails", "Apple CarPlay", "Android Auto", "EyeSight Safety System"],
         location: "Boulder, CO",
-        images: ["https://images.unsplash.com/photo-1598537139670-6c15e2d3f461?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://content-images.carmax.com/stockimages/2019/subaru/outback/st2400-089-evoxwebmedium.png", "https://file.kelleybluebookimages.com/kbb/base/evox/StJ/12830/2019-Subaru-Outback-rear-angle_12830_173_640x480.jpg"],
         userId: seller.id
       },
       {
@@ -270,7 +270,7 @@ export class MemStorage implements IStorage {
         description: "Elegant Lexus RX 350 with premium features and reliability. This luxury crossover offers a smooth ride, upscale interior, and advanced safety features.",
         features: ["Leather Interior", "Navigation", "Moonroof", "Heated/Ventilated Seats", "Premium Sound"],
         location: "Atlanta, GA",
-        images: ["https://images.unsplash.com/photo-1605515298946-d891f3eeef44?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://file.kelleybluebookimages.com/kbb/base/evox/CP/11159/2017-Lexus-RX-front_11159_032_1843x830_223_cropped.png"],
         userId: seller.id
       },
       {
@@ -286,7 +286,7 @@ export class MemStorage implements IStorage {
         description: "Modern Volkswagen ID.4 electric SUV with impressive range and technology. This eco-friendly vehicle offers zero emissions without compromising on space or comfort.",
         features: ["Electric Powertrain", "10-inch Touchscreen", "ID.Light", "Heated Seats", "Panoramic Glass Roof"],
         location: "Los Angeles, CA",
-        images: ["https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://www.digitaltrends.com/wp-content/uploads/2021/09/2021-volkswagen-id-4-awd-front-three-quarter.jpg?p=1"],
         userId: seller.id
       },
       {
@@ -302,7 +302,7 @@ export class MemStorage implements IStorage {
         description: "Capable Jeep Wrangler Unlimited Rubicon ready for off-road adventures. Features include 4x4, removable top, locking differentials, and disconnecting sway bars.",
         features: ["4x4", "Removable Top", "Locking Differentials", "Rock Rails", "Manual Transmission"],
         location: "Moab, UT",
-        images: ["https://images.unsplash.com/photo-1518635105705-73cce2a429f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://digital.pixelmotion.com/assets/theme/seo-page-builder/images/2018/Jeep/Wrangler%20JL%20Unlimited%20Rubicon/2018%20Jeep%20Wrangler%20JL%20Unlimited%20Rubicon%20Red%20Exterior%20Front.jpg"],
         userId: seller.id
       },
       {
@@ -334,7 +334,7 @@ export class MemStorage implements IStorage {
         description: "Elegant Mercedes-Benz C300 with premium features. This luxury sedan offers a comfortable ride, upscale interior, and advanced technology.",
         features: ["Leather Interior", "Navigation", "Panoramic Sunroof", "Heated Seats", "LED Headlights"],
         location: "Houston, TX",
-        images: ["https://images.unsplash.com/photo-1580274437636-1c384e617543?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://img2.carmax.com/assets/mmy-mercedes-benz-c300-2016/image/1.jpg?width=800&height=600"],
         userId: seller.id
       },
       {
@@ -350,7 +350,7 @@ export class MemStorage implements IStorage {
         description: "Nearly new Ford Mustang Mach-E Premium electric SUV. This innovative vehicle combines the Mustang's heritage with modern electric technology.",
         features: ["Electric Powertrain", "15.5-inch Touchscreen", "Panoramic Glass Roof", "360-degree Camera", "B&O Sound System"],
         location: "Nashville, TN",
-        images: ["https://images.unsplash.com/photo-1617895153857-82fe79adfcd4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://build.ford.com/dig/Ford/Mustang/2022/HD-TILE/Image%5B%7CFord%7CMustang%7C2022%7C1%7C1.%7C200A.P8T..PB3..88E.891.~3ES00_BCMAC.DSS.SED.574.~BCMAC.13K.COU.59C.51H.PDS.LRS.LTS.646.T3H.RWD.453.99H.AFP.50B.77R.SSR.58E.SY3.AML.44X.EBST.PRE.ACT.%5D/EXT/1/vehicle.png", "https://inv.assets.sincrod.com/ChromeColorMatch/us/WHITE_cc_2022FOC050045_02_1280_B3.jpg"],
         userId: seller.id
       },
       {
@@ -366,7 +366,7 @@ export class MemStorage implements IStorage {
         description: "Reliable Toyota 4Runner with off-road capabilities. This rugged SUV is perfect for adventures while still offering comfort for daily driving.",
         features: ["4x4", "Roof Rack", "Backup Camera", "Tow Package", "Running Boards"],
         location: "Phoenix, AZ",
-        images: ["https://images.unsplash.com/photo-1533759045314-f3c1ee70d671?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://images.hgmsites.net/med/2017-toyota-4runner-limited-2wd-natl-angular-front-exterior-view_100602273_m.jpg"],
         userId: seller.id
       },
       {
@@ -382,7 +382,7 @@ export class MemStorage implements IStorage {
         description: "Powerful Dodge Challenger R/T with HEMI V8 engine. This American muscle car offers exhilarating performance and classic styling.",
         features: ["5.7L HEMI V8", "Sport Mode", "20-inch Wheels", "Apple CarPlay", "Android Auto"],
         location: "Las Vegas, NV",
-        images: ["https://images.unsplash.com/photo-1563694983011-6f4d90358083?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://hips.hearstapps.com/hmg-prod/images/challenger1-1557774972.jpg", "https://di-uploads-pod26.dealerinspire.com/rickhendrickchryslerdodgejeepramduluth/uploads/2019/11/Challenger-Hero.png"],
         userId: seller.id
       },
       {
@@ -398,7 +398,7 @@ export class MemStorage implements IStorage {
         description: "Dependable Honda CR-V EX-L with leather interior. This popular crossover offers excellent fuel economy, spacious interior, and Honda's reputation for reliability.",
         features: ["Leather Interior", "Sunroof", "Apple CarPlay", "Android Auto", "Honda Sensing Safety Suite"],
         location: "San Diego, CA",
-        images: ["https://images.unsplash.com/photo-1596768363997-845dcb20ffcf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://hips.hearstapps.com/hmg-prod/images/2020-honda-cr-v-hybrid-drive-109-1584417693.jpg"],
         userId: seller.id
       },
       {
@@ -414,7 +414,7 @@ export class MemStorage implements IStorage {
         description: "Capable GMC Sierra 1500 AT4 with off-road package. This premium truck combines luxury with rugged capability.",
         features: ["4x4", "2-inch Lift", "Off-Road Suspension", "MultiPro Tailgate", "Leather Interior"],
         location: "Salt Lake City, UT",
-        images: ["https://images.unsplash.com/photo-1608312149553-d3026bbc5cd5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://di-sitebuilder-assets.dealerinspire.com/GMC/MLP/Sierra+1500/2021/Colors/Onyx+Black.jpg", "https://www.edmunds.com/assets/m/gmc/sierra-1500/2020/oem/2020_gmc_sierra-1500_crew-cab-pickup_at4_fq_oem_1_600.jpg"],
         userId: seller.id
       },
       {
@@ -430,7 +430,7 @@ export class MemStorage implements IStorage {
         description: "Well-maintained Nissan Rogue SL with premium features. This crossover offers comfort, space, and advanced safety features.",
         features: ["Leather Interior", "Navigation", "360-degree Camera", "Blind Spot Monitoring", "Panoramic Sunroof"],
         location: "Philadelphia, PA",
-        images: ["https://images.unsplash.com/photo-1578546272315-6ea99d9f00f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://file.kelleybluebookimages.com/kbb/base/evox/CP/11703/2017-Nissan-Rogue-front_11703_032_1838x886_EAN_cropped.png"],
         userId: seller.id
       },
       {
@@ -446,7 +446,7 @@ export class MemStorage implements IStorage {
         description: "Efficient Chevrolet Bolt EV with impressive range. This all-electric hatchback offers eco-friendly transportation with plenty of tech features.",
         features: ["Electric Powertrain", "10.2-inch Touchscreen", "360-degree Camera", "Heated Seats", "DC Fast Charging Capability"],
         location: "Sacramento, CA",
-        images: ["https://images.unsplash.com/photo-1594146185518-8ea425fa8f08?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://www.motortrend.com/uploads/sites/11/2018/06/2018-Chevrolet-Bolt-EV-Premier-04.jpg", "https://www.motortrend.com/uploads/sites/10/2018/02/2018-chevrolet-bolt-ev-lt-hatchback-angular-front.png"],
         userId: seller.id
       },
       {
@@ -462,7 +462,7 @@ export class MemStorage implements IStorage {
         description: "Elegant Volvo XC60 with Scandinavian design and advanced safety features. This luxury SUV offers comfort, style, and Volvo's reputation for safety.",
         features: ["Leather Interior", "Panoramic Sunroof", "City Safety", "Pilot Assist", "Harman Kardon Audio"],
         location: "Minneapolis, MN",
-        images: ["https://images.unsplash.com/photo-1651598335011-a5232c06d2d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://img.sm360.ca/images//article/john-scotti-automotive/53915/file/volvo-xc50-concept_8d58b435456126711542734491188.jpg"],
         userId: seller.id
       },
       {
@@ -478,7 +478,7 @@ export class MemStorage implements IStorage {
         description: "Fun Mazda MX-5 Miata with manual transmission. This convertible sports car offers an engaging driving experience, perfect for sunny days and twisty roads.",
         features: ["Convertible Top", "Leather Seats", "Bose Audio", "Navigation", "Heated Seats"],
         location: "San Francisco, CA",
-        images: ["https://images.unsplash.com/photo-1550923224-6cc0da10ffd5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPWL06lQHCtEvWmAEvgCER4r3SjnLVUhufGQ&s", "https://www.themanual.com/wp-content/uploads/sites/9/2015/09/2016-Mazda-MX-5-Miata-front-angle.jpg?p=1"],
         userId: seller.id
       },
       {
@@ -494,7 +494,7 @@ export class MemStorage implements IStorage {
         description: "Sporty Acura RDX A-Spec with premium features. This luxury crossover combines performance with comfort and advanced technology.",
         features: ["A-Spec Package", "Leather Interior", "ELS Studio Audio", "Panoramic Sunroof", "Super Handling All-Wheel Drive"],
         location: "Orlando, FL",
-        images: ["https://images.unsplash.com/photo-1622618596603-8fc93f3c279a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"],
+        images: ["https://cdn.dlron.us/static/dealer-16314/2020-Acura-RDX.jpg"],
         userId: seller.id
       }
     ];
