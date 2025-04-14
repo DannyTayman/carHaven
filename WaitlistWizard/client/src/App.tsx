@@ -10,10 +10,7 @@ import HomePage from "@/pages/home-page";
 import AuthPage from "@/pages/auth-page";
 import CarListingPage from "@/pages/car-listing-page";
 import CarDetailPage from "@/pages/car-detail-page";
-
 import FinanceGuide from "@/pages/finance-guide";
-
-
 import ProfilePage from "@/pages/profile-page";
 import MessagesPage from "@/pages/messages-page";
 import NotFound from "@/pages/not-found";
