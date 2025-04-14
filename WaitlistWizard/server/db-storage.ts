@@ -1,6 +1,6 @@
 
 import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import Auto_Haven from 'postgres';
 import { 
   users, cars, messages, reviews, favorites,
   type User, type InsertUser,
@@ -19,7 +19,7 @@ if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL environment variable is required');
 }
 
-const client = postgres(process.env.DATABASE_URL);
+const client = Auto_Haven(process.env.DATABASE_URL);
 const db = drizzle(client);
 
 export class DbStorage implements IStorage {
@@ -97,3 +97,4 @@ export class DbStorage implements IStorage {
     return true;
   }
 }
+
