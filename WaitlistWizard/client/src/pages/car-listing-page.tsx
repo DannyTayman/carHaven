@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { CarList } from "@/components/car/car-list";
 import { CarSearch } from "@/components/car/car-search";
 import { useLocation, useSearch } from "wouter";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Filter, SlidersHorizontal, X } from "lucide-react";
+import { apiRequest } from "@/lib/queryClient";
+import { Textarea } from "@/components/ui/textarea";
+import { ChevronLeft, ChevronRight, Filter, SlidersHorizontal, X, MessageCircle, Loader2 } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -25,12 +29,61 @@ import {
 
 export default function CarListingPage() {
   const search = useSearch();
+  const [messageContent, setMessageContent] = useState("");
+  const { toast } = useToast();
   const [, navigate] = useLocation();
   const searchParams = new URLSearchParams(search);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("newest");
   const ITEMS_PER_PAGE = 9;
+
+  const messageMutation = useMutation({
+    mutationFn: async (content: string) => {
+      if (!user || !car) return;
+
+      const messageData = {
+        receiverId: car.userId,
+        carId: car.id,
+        content,
+      };
+
+      const response = await apiRequest("POST", "/api/messages", messageData);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message sent",
+        description: "Your message has been sent to the seller",
+      });
+      setMessageContent("");
+    },
+    onError: (error) => {
+      toast({
+        title: "Failed to send message",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Handle sending message
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!messageContent.trim()) return;
+
+    if (!user) {
+      toast({
+        title: "Authentication required",
+        description: "Please login to send messages",
+        variant: "destructive",
+      });
+      navigate("/auth");
+      return;
+    }
+
+    messageMutation.mutate(messageContent);
+  };
   
   // Fetch all cars to get total count
   const { data: cars } = useQuery<Car[]>({
@@ -267,6 +320,45 @@ export default function CarListingPage() {
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Button>
+                
+                {/* Contact seller section */}
+                <div>
+                      <div className="mb-6">
+                        <Sheet>
+                          <SheetTrigger asChild>
+                            <Button className="w-full">
+                              <MessageCircle className="h-5 w-5 mr-2" />
+                              Send Message
+                            </Button>
+                          </SheetTrigger>
+                          <SheetContent>
+                            <SheetHeader>
+                              <SheetTitle>Message the Seller</SheetTitle>
+                            </SheetHeader>
+                            <div className="py-6">
+                              <form onSubmit={handleSendMessage}>
+                                <Textarea
+                                  className="min-h-[150px] mb-4"
+                                  placeholder="Type your message here..."
+                                  value={messageContent}
+                                  onChange={(e) => setMessageContent(e.target.value)}
+                                />
+                                <Button
+                                  type="submit"
+                                  className="w-full"
+                                  disabled={messageMutation.isPending || !messageContent.trim()}
+                                >
+                                  {messageMutation.isPending && (
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                  )}
+                                  Send Message
+                                </Button>
+                              </form>
+                            </div>
+                          </SheetContent>
+                        </Sheet>
+                      </div>
+                </div>
               </div>
             </div>
           )}
