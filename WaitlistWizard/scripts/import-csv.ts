@@ -1,12 +1,12 @@
 
 import { storage } from '../server/storage';
 import fs from 'fs';
-import csv from 'csv-parse';
+import { parse } from 'csv-parse';
 
 async function importCsv() {
   const fileContent = fs.readFileSync('../Cars - Sheet1 (5).csv', 'utf-8');
   
-  csv.parse(fileContent, { columns: true }, async (err, records) => {
+  parse(fileContent, { columns: true }, async (err, records) => {
     if (err) {
       console.error('Error parsing CSV:', err);
       return;
