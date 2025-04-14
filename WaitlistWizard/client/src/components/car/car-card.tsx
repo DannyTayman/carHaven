@@ -71,7 +71,7 @@ const carImageMap: Record<string, Record<string, string[]>> = {
       "https://images.unsplash.com/photo-1634118520179-0c78b72df69a?auto=format&fit=crop&q=80&w=2787"
     ]
   },
-  
+
   // Images by car brand
   brand: {
     toyota: [
@@ -120,7 +120,7 @@ const carImageMap: Record<string, Record<string, string[]>> = {
       "https://images.unsplash.com/photo-1622194993799-3120c8a8c0cd?auto=format&fit=crop&q=80&w=2874"
     ],
   },
-  
+
   // Default images if no type or brand match
   default: {
     default: [
@@ -139,11 +139,11 @@ const getCarImage = (car: Car): string => {
   if (car.images && car.images.length > 0) {
     return car.images[0];
   }
-  
+
   // Try to find a brand match
   const brand = car.make.toLowerCase();
   const brandsToCheck = ['toyota', 'honda', 'ford', 'bmw', 'mercedes', 'audi', 'tesla', 'chevrolet', 'nissan'];
-  
+
   let brandMatch = null;
   for (const brandToCheck of brandsToCheck) {
     if (brand.includes(brandToCheck)) {
@@ -151,12 +151,12 @@ const getCarImage = (car: Car): string => {
       break;
     }
   }
-  
+
   if (brandMatch && carImageMap.brand[brandMatch]) {
     const brandImages = carImageMap.brand[brandMatch];
     return brandImages[Math.floor(Math.random() * brandImages.length)];
   }
-  
+
   // If no brand match, try to match car type from features or description
   const typePatterns = [
     { keyword: 'suv', type: 'suv' },
@@ -175,7 +175,7 @@ const getCarImage = (car: Car): string => {
     { keyword: 'hybrid', type: 'hybrid' },
     { keyword: 'luxury', type: 'luxury' }
   ];
-  
+
   // Check features for type matches
   let typeMatch = null;
   if (car.features) {
@@ -187,7 +187,7 @@ const getCarImage = (car: Car): string => {
       }
     }
   }
-  
+
   // Check description for type matches if we didn't find in features
   if (!typeMatch && car.description) {
     for (const pattern of typePatterns) {
@@ -197,7 +197,7 @@ const getCarImage = (car: Car): string => {
       }
     }
   }
-  
+
   // Check if the model name contains type indicators
   if (!typeMatch) {
     const modelLower = car.model.toLowerCase();
@@ -208,7 +208,7 @@ const getCarImage = (car: Car): string => {
       }
     }
   }
-  
+
   // Check fuel type for electric/hybrid matches
   if (!typeMatch) {
     if (car.fuel === 'electric') {
@@ -217,13 +217,13 @@ const getCarImage = (car: Car): string => {
       typeMatch = 'hybrid';
     }
   }
-  
+
   // If we found a type match, use it
   if (typeMatch && carImageMap.type[typeMatch]) {
     const typeImages = carImageMap.type[typeMatch];
     return typeImages[Math.floor(Math.random() * typeImages.length)];
   }
-  
+
   // If all else fails, use a random default image
   const defaultImages = carImageMap.default.default;
   return defaultImages[Math.floor(Math.random() * defaultImages.length)];
@@ -236,6 +236,16 @@ interface CarCardProps {
   averageRating?: number;
   showAllFeatures?: boolean;
 }
+
+const calculatePriceScore = (car: Car): number => {
+  // Replace this with your actual price score calculation logic
+  // This is a placeholder example
+  const averagePrice = 30000; // Replace with actual average price for similar cars
+  const priceDifference = car.price - averagePrice;
+  const score = Math.max(0, 100 - Math.abs(priceDifference / averagePrice) * 100);
+  return score;
+};
+
 
 export function CarCard({ 
   car, 
@@ -259,7 +269,7 @@ export function CarCard({
 
   const handleFavoriteToggle = async (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigation to detail page
-    
+
     if (!user) {
       toast({
         title: "Authentication required",
@@ -268,9 +278,9 @@ export function CarCard({
       });
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     try {
       if (isFavorite) {
         // Remove from favorites
@@ -289,7 +299,7 @@ export function CarCard({
           description: `${car.make} ${car.model} was added to your favorites`
         });
       }
-      
+
       // Invalidate favorites query to refetch favorites
       queryClient.invalidateQueries({ queryKey: ["/api/favorites"] });
     } catch (error) {
@@ -305,10 +315,10 @@ export function CarCard({
 
   // Get appropriate image
   const imageUrl = getCarImage(car);
-  
+
   // Format condition for display
   const formattedCondition = car.condition.replace('_', ' ');
-  
+
   // Determine features to display
   const displayFeatures = showAllFeatures 
     ? car.features || [] 
@@ -339,7 +349,7 @@ export function CarCard({
               )}
             </Button>
           </div>
-          
+
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
             <h3 className="text-white font-bold truncate">{car.title || `${car.year} ${car.make} ${car.model}`}</h3>
             <p className="text-white/90 text-sm">
@@ -348,11 +358,20 @@ export function CarCard({
           </div>
         </div>
       </Link>
-      
+
       <CardContent className="p-5 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-3">
-          <span className="text-xl font-bold text-primary">{formatPrice(car.price)}</span>
-          {averageRating > 0 && (
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold text-primary">{formatPrice(car.price)}</span>
+              <Badge variant="outline" className={`${
+                calculatePriceScore(car) >= 70 ? 'bg-green-100 text-green-800' :
+                calculatePriceScore(car) >= 40 ? 'bg-yellow-100 text-yellow-800' :
+                'bg-red-100 text-red-800'
+              }`}>
+                Score: {calculatePriceScore(car)}
+              </Badge>
+            </div>
+            {averageRating > 0 && (
             <Rating 
               value={averageRating} 
               showValue={true}
@@ -361,7 +380,7 @@ export function CarCard({
             />
           )}
         </div>
-        
+
         <div className="flex flex-wrap gap-1.5 mb-4">
           <Badge variant="secondary" className="bg-primary/10 text-primary-700 font-medium">
             {formattedCondition}
@@ -373,7 +392,7 @@ export function CarCard({
             {car.transmission}
           </Badge>
         </div>
-        
+
         {displayFeatures.length > 0 && (
           <div className="space-y-1.5 mt-auto mb-4">
             {displayFeatures.map((feature, index) => (
@@ -384,7 +403,7 @@ export function CarCard({
             ))}
           </div>
         )}
-        
+
         <div className="flex justify-between items-center mt-auto gap-2">
           <Button 
             variant="outline" 
@@ -424,25 +443,25 @@ export function CarCardSkeleton() {
       <div className="relative aspect-[16/9] overflow-hidden bg-muted">
         <Skeleton className="w-full h-full" />
       </div>
-      
+
       <CardContent className="p-5 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-3">
           <Skeleton className="h-7 w-24" />
           <Skeleton className="h-4 w-20" />
         </div>
-        
+
         <div className="flex gap-1.5 mb-4">
           <Skeleton className="h-6 w-16" />
           <Skeleton className="h-6 w-16" />
           <Skeleton className="h-6 w-16" />
         </div>
-        
+
         <div className="space-y-2 mt-auto mb-4">
           <Skeleton className="h-4 w-full" />
           <Skeleton className="h-4 w-5/6" />
           <Skeleton className="h-4 w-4/6" />
         </div>
-        
+
         <div className="flex gap-2 mt-auto">
           <Skeleton className="h-10 flex-1" />
           <Skeleton className="h-10 flex-1" />
