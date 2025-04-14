@@ -56,6 +56,44 @@ export class DbStorage implements IStorage {
     return result[0];
   }
 
-  // Similar implementations for car, message, review, and favorite operations...
-  // Implementation omitted for brevity but follows same pattern
+  // Car operations
+  async getCars(filters: Record<string, any> = {}) {
+    const query = db.select().from(cars);
+    
+    // Apply filters
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value !== undefined && value !== '') {
+        query.where(eq(cars[key], value));
+      }
+    });
+
+    return query;
+  }
+
+  async getCar(id: number) {
+    const result = await db.select().from(cars).where(eq(cars.id, id));
+    return result[0];
+  }
+
+  async getUserCars(userId: number) {
+    return db.select().from(cars).where(eq(cars.userId, userId));
+  }
+
+  async createCar(car: InsertCar) {
+    const result = await db.insert(cars).values(car).returning();
+    return result[0];
+  }
+
+  async updateCar(id: number, carData: Partial<Car>) {
+    const result = await db.update(cars)
+      .set(carData)
+      .where(eq(cars.id, id))
+      .returning();
+    return result[0];
+  }
+
+  async deleteCar(id: number) {
+    await db.delete(cars).where(eq(cars.id, id));
+    return true;
+  }
 }

@@ -47,6 +47,14 @@ export const cars = pgTable("cars", {
   features: text("features").array(),
   location: text("location").notNull(),
   images: text("images").array(),
+  priceScore: integer("price_score"),
+  exteriorColor: text("exterior_color"),
+  interiorColor: text("interior_color"),
+  vin: text("vin"),
+  engineSize: text("engine_size"),
+  horsepower: integer("horsepower"),
+  mpgCity: integer("mpg_city"),
+  mpgHighway: integer("mpg_highway"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
