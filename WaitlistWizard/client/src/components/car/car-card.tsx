@@ -363,12 +363,12 @@ export function CarCard({
         <div className="flex justify-between items-start mb-3">
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold text-primary">{formatPrice(car.price)}</span>
-              <Badge variant="outline" className={`${
+              <Badge variant="outline" className={`w-16 h-16 flex items-center justify-center rounded-lg text-lg ${
                 calculatePriceScore(car) >= 70 ? 'bg-green-100 text-green-800' :
                 calculatePriceScore(car) >= 40 ? 'bg-yellow-100 text-yellow-800' :
                 'bg-red-100 text-red-800'
               }`}>
-                Score: {calculatePriceScore(car)}
+                {Math.round(calculatePriceScore(car))}
               </Badge>
             </div>
             {averageRating > 0 && (
