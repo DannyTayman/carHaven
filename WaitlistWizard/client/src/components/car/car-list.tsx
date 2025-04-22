@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Link } from 'wouter';
+import { trainModel } from "@/lib/car-scoring";
 
 interface CarListProps {
   searchParams?: Record<string, any>;
@@ -47,6 +48,12 @@ export function CarList({
       return response.json();
     },
   });
+
+  useEffect(() => {
+    if (cars && cars.length > 0) {
+      trainModel(cars);
+    }
+  }, [cars]);
   
   // Fetch user's favorites if logged in
   const { data: favorites, isLoading: favoritesLoading } = useQuery({
@@ -197,6 +204,7 @@ export function CarList({
           <CarCard 
             key={car.id} 
             car={car} 
+            allCars={displayedCars}
             isFavorited={favoritedCarIds.has(car.id)}
             reviewCount={reviewCount}
             averageRating={averageRating}

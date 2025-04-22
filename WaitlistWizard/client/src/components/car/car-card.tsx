@@ -27,6 +27,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { calculatePriceScore } from "@/lib/car-scoring";
 
 // Collection of car images by type and brand
 const carImageMap: Record<string, Record<string, string[]>> = {
@@ -260,31 +261,21 @@ const getCarImage = (car: Car): string => {
 
 interface CarCardProps {
   car: Car;
+  allCars: Car[];
   isFavorited?: boolean;
   reviewCount?: number;
   averageRating?: number;
   showAllFeatures?: boolean;
 }
 
-const calculatePriceScore = (car: Car): number => {
-  // Replace this with your actual price score calculation logic
-  // This is a placeholder example
-  const averagePrice = 30000; // Replace with actual average price for similar cars
-  const priceDifference = car.price - averagePrice;
-  const score = Math.max(
-    0,
-    100 - Math.abs(priceDifference / averagePrice) * 100,
-  );
-  return score;
-};
-
-export function CarCard({
-  car,
-  isFavorited = false,
-  reviewCount = 0,
-  averageRating = 0,
-  showAllFeatures = false,
-}: CarCardProps) {
+  export function CarCard({
+    car,
+    allCars,
+    isFavorited = false,
+    reviewCount = 0,
+    averageRating = 0,
+    showAllFeatures = false,
+  }: CarCardProps) {
   const [isFavorite, setIsFavorite] = useState(isFavorited);
   const { user } = useAuth();
   //const { toast } = useToast();
@@ -453,14 +444,14 @@ export function CarCard({
             <Badge
               variant="outline"
               className={`w-16 h-16 flex items-center justify-center rounded-lg text-lg ${
-                calculatePriceScore(car) >= 70
+                calculatePriceScore(car, allCars) >= 70
                   ? "bg-green-100 text-green-800"
-                  : calculatePriceScore(car) >= 40
+                  : calculatePriceScore(car, allCars) >= 40
                     ? "bg-yellow-100 text-yellow-800"
                     : "bg-red-100 text-red-800"
               }`}
             >
-              {Math.round(calculatePriceScore(car))}
+              {Math.round(calculatePriceScore(car, allCars))}
             </Badge>
           </div>
           {averageRating > 0 && (
