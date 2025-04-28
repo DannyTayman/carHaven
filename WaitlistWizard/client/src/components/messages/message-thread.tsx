@@ -42,9 +42,10 @@ type ChatMessage = {
 interface MessageThreadProps {
   conversation: Conversation;
   currentUser: User;
+  sellerEmail: string;
 }
 
-export function MessageThread({ conversation, currentUser }: MessageThreadProps) {
+export function MessageThread({ conversation, currentUser, sellerEmail }: MessageThreadProps) {
   const { toast } = useToast();
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -274,36 +275,18 @@ export function MessageThread({ conversation, currentUser }: MessageThreadProps)
       </CardContent>
       
       <CardFooter className="p-4 border-t">
-        <form onSubmit={handleSendMessage} className="w-full flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <Textarea
-              placeholder="Type your message..."
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              className="min-h-[60px] pr-16 resize-none"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  if (newMessage.trim() && !sendMessageMutation.isPending) {
-                    handleSendMessage(e);
-                  }
-                }
-              }}
-            />
-            <Button 
-              type="submit" 
-              disabled={!newMessage.trim() || sendMessageMutation.isPending}
-              className="absolute bottom-2 right-2 px-3 py-1 h-8"
-              size="sm"
-            >
-              {sendMessageMutation.isPending ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                "Send"
-              )}
-            </Button>
-          </div>
-        </form>
+        <Button
+          className="w-full"
+          size="lg"
+          onClick={() => {
+            toast({
+              title: "Seller's Email",
+              description: sellerEmail,
+            });
+          }}
+        >
+          Get Seller's Email
+        </Button>
       </CardFooter>
     </Card>
   );
