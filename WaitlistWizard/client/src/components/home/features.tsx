@@ -56,7 +56,7 @@ export default function Features() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose AutoMarket</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Car Haven</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             We're building the most comprehensive platform for buying and selling cars with features designed for today's drivers.
           </p>

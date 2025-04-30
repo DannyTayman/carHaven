@@ -93,8 +93,8 @@ export default function AuthPage() {
             </CardTitle>
             <CardDescription className="text-center">
               {activeTab === "login"
-                ? "Sign in to your AutoMarket account"
-                : "Join thousands of car enthusiasts on AutoMarket"}
+                ? "Sign in to your Car Haven account"
+                : "Join thousands of car enthusiasts on Car Haven"}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -243,7 +243,7 @@ export default function AuthPage() {
         <div className="hidden lg:block">
           <div className="space-y-6">
             <h1 className="text-4xl font-bold text-gray-900">
-              Find Your Perfect Drive on AutoMarket
+              Find Your Perfect Drive on Car Haven
             </h1>
             <p className="text-lg text-gray-600">
               Join thousands of satisfied customers who found their dream cars. Our platform makes
