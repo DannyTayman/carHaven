@@ -18,7 +18,7 @@
     "paths": {
       "@/*": ["./client/src/*"],
       "@shared/*": ["./shared/*"]
-    }
-    "types": ["jest", "@testing-library/jest-dom"]
+    },
+    "types": ["jest", "@testing-library/jest-dom"]  // Added comma here
   }
 }
