@@ -10,23 +10,13 @@ import {
   HeartFilled,
   Check,
   DirectionsCar,
-  MessageCircle,
 } from "@/components/ui/icons";
+import { Mail, Loader2 } from "lucide-react";
 import { Car } from "@shared/schema";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Textarea } from "@/components/ui/textarea";
-import { Loader2 } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 
 // Collection of car images by type and brand
 const carImageMap: Record<string, Record<string, string[]>> = {
@@ -35,58 +25,58 @@ const carImageMap: Record<string, Record<string, string[]>> = {
     sedan: [
       "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=3024",
       "https://images.unsplash.com/photo-1549058202-b9c5bc80d887?auto=format&fit=crop&q=80&w=2969",
-      "https://images.unsplash.com/photo-1549317661-bd32c8017f8d?auto=format&fit=crop&q=80&w=3070",
+      "https://images.unsplash.com/photo-1549317661-bd32c8017f8d?auto=format&fit=crop&q=80&w=3070"
     ],
     suv: [
       "https://images.unsplash.com/photo-1599912027611-484b9fc447af?auto=format&fit=crop&q=80&w=3069",
       "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=2970",
-      "https://images.unsplash.com/photo-1616806569992-a9b18ed8c4da?auto=format&fit=crop&q=80&w=2970",
+      "https://images.unsplash.com/photo-1616806569992-a9b18ed8c4da?auto=format&fit=crop&q=80&w=2970"
     ],
     truck: [
       "https://images.unsplash.com/photo-1571987502227-9231b837d92a?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1569017388730-020b5f80a004?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1596449014052-ca369d8149a2?auto=format&fit=crop&q=80&w=2940",
+      "https://images.unsplash.com/photo-1596449014052-ca369d8149a2?auto=format&fit=crop&q=80&w=2940"
     ],
     sports: [
       "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=3147",
       "https://images.unsplash.com/photo-1602776256868-dd8ef752ba5c?auto=format&fit=crop&q=80&w=2426",
-      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=2650",
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=2650"
     ],
     convertible: [
       "https://images.unsplash.com/photo-1617469767053-ca22a93a7a8f?auto=format&fit=crop&q=80&w=2970",
       "https://images.unsplash.com/photo-1603553329474-99f95f35394f?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1544105436-9a7e32cdabba?auto=format&fit=crop&q=80&w=2952",
+      "https://images.unsplash.com/photo-1544105436-9a7e32cdabba?auto=format&fit=crop&q=80&w=2952"
     ],
     coupe: [
       "https://images.unsplash.com/photo-1592840062661-a5a7f78e2056?auto=format&fit=crop&q=80&w=2974",
       "https://images.unsplash.com/photo-1514867644123-6385d58d3cd4?auto=format&fit=crop&q=80&w=2960",
-      "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=2970",
+      "https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=2970"
     ],
     electric: [
       "https://images.unsplash.com/photo-1593941707882-a5bba53b5999?auto=format&fit=crop&q=80&w=2972",
       "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&q=80&w=2970",
-      "https://images.unsplash.com/photo-1616455263544-695d4998e1d1?auto=format&fit=crop&q=80&w=2971",
+      "https://images.unsplash.com/photo-1616455263544-695d4998e1d1?auto=format&fit=crop&q=80&w=2971"
     ],
     luxury: [
       "https://images.unsplash.com/photo-1583267746897-2cf415887172?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1614200179396-2bdb77383522?auto=format&fit=crop&q=80&w=3024",
+      "https://images.unsplash.com/photo-1614200179396-2bdb77383522?auto=format&fit=crop&q=80&w=3024"
     ],
     minivan: [
       "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=2970",
       "https://images.unsplash.com/photo-1548686013-c0893dc2ed36?auto=format&fit=crop&q=80&w=3087",
-      "https://images.unsplash.com/photo-1591439657848-9f4b9ce3b34b?auto=format&fit=crop&q=80&w=2940",
+      "https://images.unsplash.com/photo-1591439657848-9f4b9ce3b34b?auto=format&fit=crop&q=80&w=2940"
     ],
     hatchback: [
       "https://images.unsplash.com/photo-1590510176997-da2418a5d4e7?auto=format&fit=crop&q=80&w=2934",
       "https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1572811983770-881b4fdb5aff?auto=format&fit=crop&q=80&w=2944",
+      "https://images.unsplash.com/photo-1572811983770-881b4fdb5aff?auto=format&fit=crop&q=80&w=2944"
     ],
     hybrid: [
       "https://images.unsplash.com/photo-1610647752706-3bb12232b3e4?auto=format&fit=crop&q=80&w=2650",
       "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&q=80&w=2942",
-      "https://images.unsplash.com/photo-1634118520179-0c78b72df69a?auto=format&fit=crop&q=80&w=2787",
-    ],
+      "https://images.unsplash.com/photo-1634118520179-0c78b72df69a?auto=format&fit=crop&q=80&w=2787"
+    ]
   },
 
   // Images by car brand
@@ -94,47 +84,47 @@ const carImageMap: Record<string, Record<string, string[]>> = {
     toyota: [
       "https://images.unsplash.com/photo-1632245889029-e406faaa34cd?auto=format&fit=crop&q=80&w=3132",
       "https://images.unsplash.com/photo-1621007947782-be4e5341d0db?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&q=80&w=2787",
+      "https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&q=80&w=2787"
     ],
     honda: [
       "https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?auto=format&fit=crop&q=80&w=2574",
       "https://images.unsplash.com/photo-1606152420003-beaad4e31abc?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1583267682087-9e3437dbe9f6?auto=format&fit=crop&q=80&w=2940",
+      "https://images.unsplash.com/photo-1583267682087-9e3437dbe9f6?auto=format&fit=crop&q=80&w=2940"
     ],
     ford: [
       "https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1604599322657-3195cd7224af?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1584345604325-f5308316a955?auto=format&fit=crop&q=80&w=2940",
+      "https://images.unsplash.com/photo-1584345604325-f5308316a955?auto=format&fit=crop&q=80&w=2940"
     ],
     bmw: [
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?auto=format&fit=crop&q=80&w=2942",
-      "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=2940",
+      "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=2940"
     ],
     mercedes: [
       "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1605515298946-d663d98ddfd7?auto=format&fit=crop&q=80&w=2787",
-      "https://images.unsplash.com/photo-1622194993799-3120c8a8c0cd?auto=format&fit=crop&q=80&w=2874",
+      "https://images.unsplash.com/photo-1622194993799-3120c8a8c0cd?auto=format&fit=crop&q=80&w=2874"
     ],
     audi: [
       "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1612468008274-9445bd56161e?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&q=80&w=2940",
+      "https://images.unsplash.com/photo-1606220838315-056192d5e927?auto=format&fit=crop&q=80&w=2940"
     ],
     tesla: [
       "https://images.unsplash.com/photo-1562422321-e18127d10876?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&q=80&w=2970",
-      "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&q=80&w=2970",
+      "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&q=80&w=2970"
     ],
     chevrolet: [
       "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1603577624238-52222ac211ce?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1578079445540-d83a4d114de9?auto=format&fit=crop&q=80&w=2787",
+      "https://images.unsplash.com/photo-1578079445540-d83a4d114de9?auto=format&fit=crop&q=80&w=2787"
     ],
     nissan: [
       "https://images.unsplash.com/photo-1591552805381-36db00b3f99c?auto=format&fit=crop&q=80&w=2868",
       "https://images.unsplash.com/photo-1609561431099-41fb2dd0a5c4?auto=format&fit=crop&q=80&w=2787",
-      "https://images.unsplash.com/photo-1622194993799-3120c8a8c0cd?auto=format&fit=crop&q=80&w=2874",
+      "https://images.unsplash.com/photo-1622194993799-3120c8a8c0cd?auto=format&fit=crop&q=80&w=2874"
     ],
   },
 
@@ -145,9 +135,9 @@ const carImageMap: Record<string, Record<string, string[]>> = {
       "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&q=80&w=2940",
       "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&q=80&w=2940",
-      "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&q=80&w=2940",
-    ],
-  },
+      "https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&q=80&w=2940"
+    ]
+  }
 };
 
 // Function to select the best image based on car details
@@ -159,17 +149,7 @@ const getCarImage = (car: Car): string => {
 
   // Try to find a brand match
   const brand = car.make.toLowerCase();
-  const brandsToCheck = [
-    "toyota",
-    "honda",
-    "ford",
-    "bmw",
-    "mercedes",
-    "audi",
-    "tesla",
-    "chevrolet",
-    "nissan",
-  ];
+  const brandsToCheck = ['toyota', 'honda', 'ford', 'bmw', 'mercedes', 'audi', 'tesla', 'chevrolet', 'nissan'];
 
   let brandMatch = null;
   for (const brandToCheck of brandsToCheck) {
@@ -186,30 +166,28 @@ const getCarImage = (car: Car): string => {
 
   // If no brand match, try to match car type from features or description
   const typePatterns = [
-    { keyword: "suv", type: "suv" },
-    { keyword: "crossover", type: "suv" },
-    { keyword: "truck", type: "truck" },
-    { keyword: "pickup", type: "truck" },
-    { keyword: "sedan", type: "sedan" },
-    { keyword: "coupe", type: "coupe" },
-    { keyword: "convertible", type: "convertible" },
-    { keyword: "sports", type: "sports" },
-    { keyword: "sports car", type: "sports" },
-    { keyword: "minivan", type: "minivan" },
-    { keyword: "van", type: "minivan" },
-    { keyword: "hatchback", type: "hatchback" },
-    { keyword: "electric", type: "electric" },
-    { keyword: "hybrid", type: "hybrid" },
-    { keyword: "luxury", type: "luxury" },
+    { keyword: 'suv', type: 'suv' },
+    { keyword: 'crossover', type: 'suv' },
+    { keyword: 'truck', type: 'truck' },
+    { keyword: 'pickup', type: 'truck' },
+    { keyword: 'sedan', type: 'sedan' },
+    { keyword: 'coupe', type: 'coupe' },
+    { keyword: 'convertible', type: 'convertible' },
+    { keyword: 'sports', type: 'sports' },
+    { keyword: 'sports car', type: 'sports' },
+    { keyword: 'minivan', type: 'minivan' },
+    { keyword: 'van', type: 'minivan' },
+    { keyword: 'hatchback', type: 'hatchback' },
+    { keyword: 'electric', type: 'electric' },
+    { keyword: 'hybrid', type: 'hybrid' },
+    { keyword: 'luxury', type: 'luxury' }
   ];
 
   // Check features for type matches
   let typeMatch = null;
   if (car.features) {
     for (const feature of car.features) {
-      const pattern = typePatterns.find((p) =>
-        feature.toLowerCase().includes(p.keyword),
-      );
+      const pattern = typePatterns.find(p => feature.toLowerCase().includes(p.keyword));
       if (pattern) {
         typeMatch = pattern.type;
         break;
@@ -240,10 +218,10 @@ const getCarImage = (car: Car): string => {
 
   // Check fuel type for electric/hybrid matches
   if (!typeMatch) {
-    if (car.fuel === "electric") {
-      typeMatch = "electric";
-    } else if (car.fuel === "hybrid" || car.fuel === "plug_in_hybrid") {
-      typeMatch = "hybrid";
+    if (car.fuel === 'electric') {
+      typeMatch = 'electric';
+    } else if (car.fuel === 'hybrid' || car.fuel === 'plug_in_hybrid') {
+      typeMatch = 'hybrid';
     }
   }
 
@@ -283,18 +261,18 @@ export function CarCard({
   isFavorited = false,
   reviewCount = 0,
   averageRating = 0,
-  showAllFeatures = false,
+  showAllFeatures = false
 }: CarCardProps) {
   const [isFavorite, setIsFavorite] = useState(isFavorited);
   const { user } = useAuth();
-  //const { toast } = useToast();
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      maximumFractionDigits: 0
     }).format(price);
   };
 
@@ -305,7 +283,7 @@ export function CarCard({
       toast({
         title: "Authentication required",
         description: "Please log in to save cars to favorites",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
@@ -319,7 +297,7 @@ export function CarCard({
         setIsFavorite(false);
         toast({
           title: "Removed from favorites",
-          description: `${car.make} ${car.model} was removed from your favorites`,
+          description: `${car.make} ${car.model} was removed from your favorites`
         });
       } else {
         // Add to favorites
@@ -327,7 +305,7 @@ export function CarCard({
         setIsFavorite(true);
         toast({
           title: "Added to favorites",
-          description: `${car.make} ${car.model} was added to your favorites`,
+          description: `${car.make} ${car.model} was added to your favorites`
         });
       }
 
@@ -337,7 +315,7 @@ export function CarCard({
       toast({
         title: "Error",
         description: "Failed to update favorites",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsLoading(false);
@@ -347,60 +325,8 @@ export function CarCard({
   // Get appropriate image
   const imageUrl = getCarImage(car);
 
-  const [messageContent, setMessageContent] = useState("");
-  const { toast } = useToast();
-  const [, navigate] = useLocation();
-
-  // Mutation for sending message
-  const messageMutation = useMutation({
-    mutationFn: async (content: string) => {
-      if (!user || !car) return;
-
-      const messageData = {
-        receiverId: car.userId,
-        carId: car.id,
-        content,
-      };
-
-      const response = await apiRequest("POST", "/api/messages", messageData);
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent",
-        description: "Your message has been sent to the seller",
-      });
-      setMessageContent("");
-    },
-    onError: (error) => {
-      toast({
-        title: "Failed to send message",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
-
-  // Handle sending message
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!messageContent.trim()) return;
-
-    if (!user) {
-      toast({
-        title: "Authentication required",
-        description: "Please login to send messages",
-        variant: "destructive",
-      });
-      navigate("/auth");
-      return;
-    }
-
-    messageMutation.mutate(messageContent);
-  };
-
   // Format condition for display
-  const formattedCondition = car.condition.replace("_", " ");
+  const formattedCondition = car.condition.replace('_', ' ');
 
   // Determine features to display
   const displayFeatures = showAllFeatures
@@ -434,9 +360,7 @@ export function CarCard({
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-            <h3 className="text-white font-bold truncate">
-              {car.title || `${car.year} ${car.make} ${car.model}`}
-            </h3>
+            <h3 className="text-white font-bold truncate">{car.title || `${car.year} ${car.make} ${car.model}`}</h3>
             <p className="text-white/90 text-sm">
               {car.year} • {car.mileage.toLocaleString()} miles
             </p>
@@ -447,9 +371,7 @@ export function CarCard({
       <CardContent className="p-5 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-3">
           <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary">
-              {formatPrice(car.price)}
-            </span>
+            <span className="text-xl font-bold text-primary">{formatPrice(car.price)}</span>
             <Badge
               variant="outline"
               className={`w-16 h-16 flex items-center justify-center rounded-lg text-lg ${
@@ -474,22 +396,13 @@ export function CarCard({
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-4">
-          <Badge
-            variant="secondary"
-            className="bg-primary/10 text-primary-700 font-medium"
-          >
+          <Badge variant="secondary" className="bg-primary/10 text-primary-700 font-medium">
             {formattedCondition}
           </Badge>
-          <Badge
-            variant="secondary"
-            className="bg-primary/10 text-primary-700 font-medium capitalize"
-          >
-            {car.fuel.replace("_", " ")}
+          <Badge variant="secondary" className="bg-primary/10 text-primary-700 font-medium capitalize">
+            {car.fuel.replace('_', ' ')}
           </Badge>
-          <Badge
-            variant="secondary"
-            className="bg-primary/10 text-primary-700 font-medium capitalize"
-          >
+          <Badge variant="secondary" className="bg-primary/10 text-primary-700 font-medium capitalize">
             {car.transmission}
           </Badge>
         </div>
@@ -506,46 +419,26 @@ export function CarCard({
         )}
 
         <div className="flex justify-between items-center mt-auto gap-2">
-          <div className="flex-1">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button className="w-full bg-gray-500 text-white hover:bg-gray-600">
-                  <MessageCircle className="h-5 w-5 mr-2" />
-                  Contact Seller
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <SheetHeader>
-                  <SheetTitle>Message the Seller</SheetTitle>
-                  <SheetDescription>
-                    Ask about the {car.year} {car.make} {car.model}
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="py-6">
-                  <form onSubmit={handleSendMessage}>
-                    <Textarea
-                      className="min-h-[150px] mb-4"
-                      placeholder="Type your message here..."
-                      value={messageContent}
-                      onChange={(e) => setMessageContent(e.target.value)}
-                    />
-                    <Button
-                      type="submit"
-                      className="w-full"
-                      disabled={
-                        messageMutation.isPending || !messageContent.trim()
-                      }
-                    >
-                      {messageMutation.isPending && (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      )}
-                      Send Message
-                    </Button>
-                  </form>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+          <Button
+            variant="outline"
+            className="flex-1"
+            onClick={(e) => {
+              e.preventDefault();
+              if (user) {
+                // Use mailto link instead of chat
+                window.location.href = `mailto:seller-${car.userId}@carhaven.com?subject=Inquiry about ${car.year} ${car.make} ${car.model}&body=Hello,%0D%0A%0D%0AI am interested in your ${car.year} ${car.make} ${car.model} listed on Car Haven.%0D%0A%0D%0APlease let me know more details about this vehicle.%0D%0A%0D%0AThank you,%0D%0A${user.username}`;
+              } else {
+                toast({
+                  title: "Authentication required",
+                  description: "Please log in to contact sellers",
+                  variant: "destructive"
+                });
+              }
+            }}
+          >
+            <Mail className="mr-2 h-4 w-4" />
+            Email
+          </Button>
           <Link href={`/cars/${car.id}`}>
             <Button className="flex-1">
               <DirectionsCar className="mr-2 h-4 w-4" />
