@@ -426,7 +426,7 @@ export function CarCard({
               e.preventDefault();
               if (user) {
                 // Use mailto link instead of chat
-                window.location.href = `mailto:seller-${car.userId}@carhaven.com?subject=Inquiry about ${car.year} ${car.make} ${car.model}&body=Hello,%0D%0A%0D%0AI am interested in your ${car.year} ${car.make} ${car.model} listed on AutoHaven.%0D%0A%0D%0APlease let me know more details about this vehicle.%0D%0A%0D%0AThank you,%0D%0A${user.username}`;
+                window.location.href = `mailto:seller-${car.userId}@autohaven.com?subject=Inquiry about ${car.year} ${car.make} ${car.model}&body=Hello,%0D%0A%0D%0AI am interested in your ${car.year} ${car.make} ${car.model} listed on AutoHaven.%0D%0A%0D%0APlease let me know more details about this vehicle.%0D%0A%0D%0AThank you,%0D%0A${user.username}`;
               } else {
                 toast({
                   title: "Authentication required",
