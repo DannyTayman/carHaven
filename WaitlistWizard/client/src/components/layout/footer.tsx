@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <DirectionsCar className="w-6 h-6 text-primary-500 mr-2" />
-              <span className="font-bold text-xl">Car Haven</span>
+              <span className="font-bold text-xl">AutoHaven</span>
             </div>
             <p className="text-gray-400 mb-4">
               The modern way to buy and sell cars online. Connecting buyers and sellers with a seamless experience.
@@ -67,7 +67,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} Car Haven. All rights reserved.
+              &copy; {new Date().getFullYear()} AutoHaven. All rights reserved.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-500 hover:text-gray-400 text-sm">Privacy Policy</a>

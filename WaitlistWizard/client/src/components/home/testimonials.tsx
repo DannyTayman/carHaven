@@ -60,7 +60,7 @@ export default function Testimonials() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Hear from people who have found their perfect vehicles through Car Haven.
+            Hear from people who have found their perfect vehicles through AutoHaven.
           </p>
         </div>
 

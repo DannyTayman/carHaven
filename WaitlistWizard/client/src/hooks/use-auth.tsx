@@ -74,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       queryClient.setQueryData(["/api/user"], userData);
       toast({
         title: "Registration successful",
-        description: `Welcome to Car Haven, ${userData.username}!`,
+        description: `Welcome to AutoHaven, ${userData.username}!`,
       });
     },
     onError: (error: Error) => {

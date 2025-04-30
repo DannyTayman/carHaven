@@ -37,7 +37,7 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <DirectionsCar className="w-6 h-6 text-primary mr-2" />
               <span className="font-bold text-xl text-primary-800">
-                Car Haven
+                AutoHaven
               </span>
             </Link>
           </div>

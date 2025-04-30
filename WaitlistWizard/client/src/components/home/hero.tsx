@@ -44,7 +44,7 @@ export default function Hero() {
             Find Your Perfect Drive
           </h1>
           <p className="text-lg md:text-xl text-gray-100 mb-8">
-            Join thousands of satisfied customers who found their dream cars on Car Haven.
+            Join thousands of satisfied customers who found their dream cars on AutoHaven.
           </p>
           
           {/* Quick Search */}
