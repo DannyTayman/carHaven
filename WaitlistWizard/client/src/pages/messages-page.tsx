@@ -31,6 +31,10 @@ type Conversation = {
   unread: boolean;
 };
 
+function generateFakeEmail(username: string) {
+  return `${username.toLowerCase().replace(/\s+/g, "")}@case.edu`;
+}
+
 export default function MessagesPage() {
   const { user } = useAuth();
   const { toast } = useToast();
@@ -258,6 +262,7 @@ export default function MessagesPage() {
             <MessageThread
               conversation={selectedConversation}
               currentUser={user}
+              sellerEmail={generateFakeEmail(selectedConversation.username)}
             />
           ) : (
             <Card className="h-[calc(100vh-200px)] flex flex-col justify-center items-center p-6 text-center">
