@@ -28,7 +28,7 @@ To run CarHaven locally:
 
 2. **Frontend (client):**
    ```bash
-   cd client
+   cd AutoHaven
    npm install
    npm run dev
    ```
