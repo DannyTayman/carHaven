@@ -1,131 +1,101 @@
-# CarHaven
+# AutoHaven
 
-CarHaven is a user-friendly car buying and selling platform designed specifically for college students. It simplifies the used car search by filtering listings based on student budgets and offers a unique **price score model** to help users assess deal quality. Additionally, it features an FAQ guide tailored to the car buying process in Cuyahoga County, making the experience accessible even for first-time buyers.
+AutoHaven is a full-stack car buying web platform tailored for college students. It helps students find affordable used cars nearby, score deals using a custom price model, and navigate the buying process in Cuyahoga County.
 
----
+## What Does It Do?
 
-## Architecture
+- Car listing and search interface
+- Custom price scoring model using ML (TensorFlow.js)
+- Authentication and user sessions
+- In-app messaging between buyers and sellers
+- Finance guide for student buyers
+- Easy-to-use frontend built for non-technical users
 
-CarHaven follows a typical three-tier architecture with separate frontend, backend, and database layers:
+## Architecture Overview
 
 ![Architecture Diagram](design.png)
 
-- **Frontend:** Built using React and TypeScript.
-- **Backend:** Developed in Java Spring Boot, serving REST APIs.
-- **Database:** PostgreSQL accessed via DrizzleORM.
+## Getting Started (Development)
 
----
+```bash
+# Clone the repo
+git clone https://github.com/your-org/autohaven.git
+cd AutoHaven
 
-## Getting Started / Installation
+# Install dependencies
+npm install
 
-To run CarHaven locally:
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/<your-repo>/carHaven.git
-   cd carHaven
-   ```
-
-2. **Frontend (client):**
-   ```bash
-   cd AutoHaven
-   npm install
-   npm run dev
-   ```
-
-3. **Backend (Java Spring Boot):**
-   - Open the `server` folder in an IDE (e.g., IntelliJ).
-   - Ensure PostgreSQL is running and the connection is configured in `application.properties`.
-   - Run the main `Application.java` class.
-
-
----
-
-## Usage / Examples
-
-CarHaven is designed for non-technical users. Once registered, users can:
-
-- **Search cars** using filters (Price, Make, Model, Mileage, etc.)
-- **Like** listings to save them to their profile
-- **Sell** a car by filling out a form
-- **View car details** and contact the seller directly
-- **Read a financing & buying guide** specific to Cuyahoga County
-
-> Example: A student logs in, filters by "Toyota under $10,000", likes a few listings, views detailed info, and messages the seller.
-
----
-
-## Folder Structure Overview
-
-```plaintext
-carHaven/
-│
-├── client/               # Frontend React app
-│   └── src/
-│       ├── pages/        # Main route pages (home, listing, car-detail)
-│       ├── components/   # UI components, grouped by feature
-│       │   ├── car/      # Car-related components (sell, view)
-│       │   ├── layout/   # Header, footer
-│       │   ├── messages/ # Messaging system
-│       │   └── ui/       # Like button, dropdowns, etc.
-│       ├── lib/          # Helper functions (e.g., price score)
-│       └── hooks/        # Custom hooks (e.g., toasts)
-│
-├── server/               # Java Spring Boot backend
-│   ├── controller/       # REST endpoints
-│   ├── service/          # Business logic
-│   ├── repository/       # DB access
-│   └── model/            # Entity models
-│
-├── tests/                # (Included under components/ui/) Unit tests for buttons, labels, car cards
+# Start development mode
+npm run dev
 ```
 
----
+In development:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5001/api/health
 
-## Tech Stack / Dependencies
+Frontend is served via Vite. Backend API is served via Express.
 
-**Frontend:**
-- React + TypeScript
-- Radix UI (for design components)
-- Shadcn/UI
-- Tailwind CSS
+## Production Build and Run
 
-**Backend:**
-- Java Spring Boot
-- PostgreSQL
-- DrizzleORM
+```bash
+# Build frontend and backend
+npm run build
 
-**Other Tools:**
-- Replit (for testing/demo)
-- React Query
-- Vite
+# Start production server
+npm run start
+```
 
----
+In production, the entire application is served from:
+- http://localhost:5001
 
-## 👥 Contribution
+## Folder Structure
 
-| Member      | Role             | Contributions |
-|-------------|------------------|----------------|
-| Deep        | Frontend Lead    | Built UI components, core page functionality |
-| Danny       | DB & Debugging   | Setup PostgreSQL, ORM integration, debugging |
-| Attiksh     | Backend & PM     | Built backend logic, managed timeline, handled writeups and coordination |
+```
+AutoHaven/
+├── client/               # Frontend (React + Vite)
+│   ├── index.html
+│   └── src/
+│       ├── App.tsx
+│       ├── components/
+│       ├── hooks/
+│       ├── pages/
+│       └── main.tsx
+├── server/               # Backend (Express + Drizzle)
+│   ├── index.ts
+│   ├── routes/
+│   └── vite.ts
+├── shared/               # Shared types and schemas
+├── attached_assets/      # Uploaded images and icons
+├── dist/public/          # Final production build
+├── package.json
+├── vite.config.ts
+├── tailwind.config.ts
+├── tsconfig.json
+```
 
-We worked cross-functionally as needed — roles evolved organically as the project progressed.
+## Tech Stack
 
----
+- **Frontend**: React, TypeScript, Vite, Tailwind CSS, Wouter, Framer Motion
+- **Backend**: Express, TypeScript, Drizzle ORM, Passport.js
+- **Database**: PostgreSQL
+- **Dev Tools**: Vitest, React Testing Library, ESLint, tsx
+- **ML**: TensorFlow.js for car price scoring
+
+## Contributors
+
+| Name                  | Role                          |
+|-----------------------|-------------------------------|
+| Attiksh Ansool Panda  | Backend, DevOps, Architecture |
+| Deep Desai            | Frontend and UI/UX            |
+| Daniel Tayman         | Database and ML Model         |
 
 ## Development Retrospective
 
-- **What went well:**
-  - Clear weekly progress due to scheduled demos.
-  - Simple, focused feature set helped reduce scope creep.
-
-- **Mistakes & Improvements:**
-  - Early challenges integrating frontend, backend, and DB could’ve been resolved faster with shared mock APIs or better interface planning.
-  - Heavy documentation slowed development at times; maintaining developer journals may have helped balance both.
-
----
+- Removed reliance on plugin-based theming
+- Replaced dynamic color loading with CSS custom properties in index.css
+- Simplified Vite + Express integration for a smoother build and dev process
+- Could have planned CI/CD earlier to reduce deployment time crunch
 
 ## License
 
-*This project is currently not licensed. Placeholder: [License Placeholder](mailto:license@example.com)*
+No License that we know of.

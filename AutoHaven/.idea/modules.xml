@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/WaitlistWizard.iml" filepath="$PROJECT_DIR$/.idea/WaitlistWizard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AutoHaven.iml" filepath="$PROJECT_DIR$/.idea/AutoHaven.iml" />
     </modules>
   </component>
 </project>

@@ -9,7 +9,6 @@
 │   ├── misc.xml
 │   ├── modules.xml
 │   └── vcs.xml
-├── .replit
 ├── client
 │   ├── index.html
 │   └── src
@@ -2777,7 +2776,6 @@
 │   │       │   ├── index.mjs
 │   │       │   └── index.mjs.map
 │   │       └── package.json
-│   ├── @replit
 │   │   ├── vite-plugin-cartographer
 │   │   │   ├── dist
 │   │   │   │   ├── beacon
