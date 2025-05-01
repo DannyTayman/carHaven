@@ -1,6 +1,7 @@
 # carHaven
 CarHaven is a new car buying platform for college students. It provides a simple interface that makes it easy to find cars nearby that are in a college kids price range, and provides a FAQ page that details the steps needed to buy a car in Cuyahoga County. We also made a price score model for every car, whcich shows how good of a deal the price is, which makes it easier for less knowledgable people to navigate the used car market
-### ADD ARCHITECTURE DIAGRAM
+
+![Architecture-Diagram]()
 
 I don't know how to run the app without using replit? But if we're ok with using replit then: Link your GitHub account to replit, select this repo to open in replit. That should automatically be able to run all of the files, which you can do by simply clicking run, and that will load the website in the preview window. Then you can run it in its own tab by clicking the new tab button
 
