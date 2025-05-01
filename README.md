@@ -1,18 +1,131 @@
-# carHaven
-CarHaven is a new car buying platform for college students. It provides a simple interface that makes it easy to find cars nearby that are in a college kids price range, and provides a FAQ page that details the steps needed to buy a car in Cuyahoga County. We also made a price score model for every car, whcich shows how good of a deal the price is, which makes it easier for less knowledgable people to navigate the used car market
+# CarHaven
 
-![Architecture-Diagram](design.png)
+CarHaven is a user-friendly car buying and selling platform designed specifically for college students. It simplifies the used car search by filtering listings based on student budgets and offers a unique **price score model** to help users assess deal quality. Additionally, it features an FAQ guide tailored to the car buying process in Cuyahoga County, making the experience accessible even for first-time buyers.
 
-I don't know how to run the app without using replit? But if we're ok with using replit then: Link your GitHub account to replit, select this repo to open in replit. That should automatically be able to run all of the files, which you can do by simply clicking run, and that will load the website in the preview window. Then you can run it in its own tab by clicking the new tab button
+---
 
-We made this software with the goal to be as easy to use as possible. There is a big sign in/register button that you need to press to log in/register the first time, to be able to buy or sell cars. Then there is the search and sell buttons in the top middle of the home screen. Sell takes you to a my listings page where you can put in the car you want to sell's details. It also takes you to your profile that lists all of the cars you liked, and allows you to update your profile information. Then the Search Cars button takes you to the main listings page for all of the cars on sale. The top of the page has all of the filters, Price, Make, and Model, then advanced filters for more unique features, mileage, or age. Then the main listing page has brief details for each of the cars, and 3 buttons you can press. One that takes you directly to the contact page for the seller, one that allows you to see more details about the car, and one that adds the car to your liked cars list. We tried to keep all of those features as simple and easy to understand and access as possible. Finally, the last major feature to access is the Financing and Buying Guide, which is just a FAQ page about how to buy a car in Cuyahoga County which can be accesssed by simply clicking on that tab on the top of the screen
+## Architecture
 
-WaitlistWizard was the head folder for almost all of our code. Under that, the server folder holds most of our important connections, to the database, to port to the server, and backend stuff. The majority of our code is in client/src and further down. In src/pages, all of the main pages are there, car-detail, car-listing, home-page, etc. Then in src/lib there are a few helper functions, that create the car price score, or other helpful functions. Similar in src/hooks has more helpful functions like toast which helps with user inputs. Then src/components contains the rest of our code, in 5 folders: car, which contains features relating to selling, viewing, and sorting cars, Home, which contains all of the additional features on the home screen, layout, which has the code for the header and footer for each of the pages, messages, which only has message-threads, which links with the message-page file under pages to create the functionality of sending messages, and finally ui, which has a ton of small folders that allowed us to add little features like the like button, and helped with the layot of the search page, or the dropdown menus. Our tests are under the ui folder because most of what we tested were parts from the ui, the button, acroll-area, collapsible, label, sidebar, and select, as well as car-card, and car-search, we would have tested more, but ran out of time to test all of the many many parts of our project through unit tests. 
+CarHaven follows a typical three-tier architecture with separate frontend, backend, and database layers:
 
-We used mostly TypeScript for the front end, with drizzleORM, postgreSQL, and radixUI for the backend and database???
+![Architecture Diagram](design.png)
 
-We started with relatively "strict" roles for each of us, Deep with the front end, Danny with the database, and Attiksh with the backend, but we turned more into Deep doing most of the building, Danny doing most of the de-bugging and tweaking for small features, and some backend, and Attiksh managing us, keeping us on track, and doing most of the write-ups, but ultimately we would each fill in working on someone else's "role" whenever help was needed.
+- **Frontend:** Built using React and TypeScript.
+- **Backend:** Developed in Java Spring Boot, serving REST APIs.
+- **Database:** PostgreSQL accessed via DrizzleORM.
 
-I feel like our development was pretty effecient, we were forced to do a bit of work every week because of all of the demos and meetings and whatnot, and we added and polished a lot of features. We had some struggles linking all of the DB with the front end and backend for a while in the semester, so it would be a lot easier to do the project over again knowing how to do that, but you could probably say that about a lot of projects. I think we had a relatively simple goal for our project and stayed focused, so having to do all of the additional reports seemed mostly to just slow us down and take time away from development time, however, if a group had a more convoluted project that needed help being kept on track, I can see the use for all of them. 
+---
 
-#Liscense@Liscense.com?????
+## Getting Started / Installation
+
+To run CarHaven locally:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/<your-repo>/carHaven.git
+   cd carHaven
+   ```
+
+2. **Frontend (client):**
+   ```bash
+   cd client
+   npm install
+   npm run dev
+   ```
+
+3. **Backend (Java Spring Boot):**
+   - Open the `server` folder in an IDE (e.g., IntelliJ).
+   - Ensure PostgreSQL is running and the connection is configured in `application.properties`.
+   - Run the main `Application.java` class.
+
+
+---
+
+## Usage / Examples
+
+CarHaven is designed for non-technical users. Once registered, users can:
+
+- **Search cars** using filters (Price, Make, Model, Mileage, etc.)
+- **Like** listings to save them to their profile
+- **Sell** a car by filling out a form
+- **View car details** and contact the seller directly
+- **Read a financing & buying guide** specific to Cuyahoga County
+
+> Example: A student logs in, filters by "Toyota under $10,000", likes a few listings, views detailed info, and messages the seller.
+
+---
+
+## Folder Structure Overview
+
+```plaintext
+carHaven/
+│
+├── client/               # Frontend React app
+│   └── src/
+│       ├── pages/        # Main route pages (home, listing, car-detail)
+│       ├── components/   # UI components, grouped by feature
+│       │   ├── car/      # Car-related components (sell, view)
+│       │   ├── layout/   # Header, footer
+│       │   ├── messages/ # Messaging system
+│       │   └── ui/       # Like button, dropdowns, etc.
+│       ├── lib/          # Helper functions (e.g., price score)
+│       └── hooks/        # Custom hooks (e.g., toasts)
+│
+├── server/               # Java Spring Boot backend
+│   ├── controller/       # REST endpoints
+│   ├── service/          # Business logic
+│   ├── repository/       # DB access
+│   └── model/            # Entity models
+│
+├── tests/                # (Included under components/ui/) Unit tests for buttons, labels, car cards
+```
+
+---
+
+## Tech Stack / Dependencies
+
+**Frontend:**
+- React + TypeScript
+- Radix UI (for design components)
+- Shadcn/UI
+- Tailwind CSS
+
+**Backend:**
+- Java Spring Boot
+- PostgreSQL
+- DrizzleORM
+
+**Other Tools:**
+- Replit (for testing/demo)
+- React Query
+- Vite
+
+---
+
+## 👥 Contribution
+
+| Member      | Role             | Contributions |
+|-------------|------------------|----------------|
+| Deep        | Frontend Lead    | Built UI components, core page functionality |
+| Danny       | DB & Debugging   | Setup PostgreSQL, ORM integration, debugging |
+| Attiksh     | Backend & PM     | Built backend logic, managed timeline, handled writeups and coordination |
+
+We worked cross-functionally as needed — roles evolved organically as the project progressed.
+
+---
+
+## Development Retrospective
+
+- **What went well:**
+  - Clear weekly progress due to scheduled demos.
+  - Simple, focused feature set helped reduce scope creep.
+
+- **Mistakes & Improvements:**
+  - Early challenges integrating frontend, backend, and DB could’ve been resolved faster with shared mock APIs or better interface planning.
+  - Heavy documentation slowed development at times; maintaining developer journals may have helped balance both.
+
+---
+
+## License
+
+*This project is currently not licensed. Placeholder: [License Placeholder](mailto:license@example.com)*
